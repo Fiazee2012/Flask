@@ -10,6 +10,7 @@ opencv-python = "*"
 reshape = "*"
 pillow = "*"
 matplotlib = "*"
+gunicorn = "*"
 
 [dev-packages]
 
