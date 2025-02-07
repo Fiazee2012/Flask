@@ -1,2 +1,5 @@
+[phases.setup]
+aptPkgs = ['libgl1', 'ffmpeg' ,'libsm6' ,'libxext6' ]
+
 [start]
 cmd = "gunicorn server:app"

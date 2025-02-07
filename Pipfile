@@ -6,11 +6,11 @@ name = "pypi"
 [packages]
 numpy = "*"
 flask = "*"
-opencv-python = "*"
 reshape = "*"
 pillow = "*"
 matplotlib = "*"
 gunicorn = "*"
+opencv-python-headless = "*"
 
 [dev-packages]
 
