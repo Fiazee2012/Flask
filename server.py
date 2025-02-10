@@ -2,9 +2,21 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from reshape import mnist_preprocess
-from flask import jsonify
+from flask import jsonify, redirect
 import numpy as np
 app = Flask(__name__)
+from werkzeug.middleware.proxy_fix import ProxyFix
+
+app.wsgi_app = ProxyFix(
+    app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+)
+
+
+@app.before_request
+def ensure_https():
+    if request.is_secure and request.headers.get("X-Forwarded-Proto", "https") == "http":
+        url = request.url.replace("http://", "https://", 1)
+        return redirect(url,30)
 
 def relu(x):
     return (x > 0) * x
