@@ -102,11 +102,13 @@ class drawingCanvas{
 }
 
 function sendData(){
-    fetch("/mnist_playground", {
+    let results = document.getElementById("results")
+    results.innerHTML = '<div class="loader"></div>'
+    setTimeout(()=>{fetch("/mnist_playground", {
         method: "POST",
         body: JSON.stringify(positions),
         headers: {"Content-type": "application/json; charset=UTF-8"},
-    }).then((response) => response.json()).then((data) => showResultAsHtml(data));
+    }).then((response) => response.json()).then((data) => showResultAsHtml(data));}, 3000)
 }
 
 function clearCanvas(){

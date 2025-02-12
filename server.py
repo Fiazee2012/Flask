@@ -59,4 +59,4 @@ def predict(image28by28, weights_1, weights_2):
     layer_3 = softmax(np.dot(layer_2, weights_2))
     return layer_3 * 100
 
-#app.run(debug=True, host = "0.0.0.0")#
+app.run(debug=True, host = "0.0.0.0")#
