@@ -118,21 +118,27 @@ function clearCanvas(){
 }
 
 function showResultAsHtml(data){
-    console.log(data)
     let div = document.getElementById("results");
-    let myHtml = ""
-    for (let i = 0; i<10; i++){
-        myHtml += `
-        <div class="d-flex align-items">
-        <p>${i}</p>
-        <span style="width: 200px; height: 20px; background-color: grey;">
-          <div style="width: ${Math.round(data[i])}%; height: 20px; background-color: white;"></div>
-        </span>
-        <p>${Math.round(data[i])}%</p>
-      </div>`
+    div.innerHTML = ""
+        for (let i=0; i<10; i++){
+    div.innerHTML+= `
+        <div class="d-flex flex-row align-items-center mb-2">
+            <p class="me-3 fw-bold" style="min-width: 25px; color:white;">${i}</p>
+            <span style="width: 200px; height: 12px; background-color: rgba(255, 255, 255, 0.1); border-radius: 6px; overflow: hidden;">
+                <div
+                    style="width:${Math.round(data[i])}%;
+                    height: 12px;
+                    background: linear-gradient(90deg, #6366F1, #3B82F6);
+                    color:white;
+                    transition: width 0.3s ease;"
+                    >
+                </div>
+            </span>
+            <p class="ms-3" style="color:white;">${Math.round(data[i])}%</p>
+        </div>
+        `;
     }
-    div.innerHTML = myHtml
-}
+}  
 
 let positions = [];
 prediction.addEventListener("click", sendData)

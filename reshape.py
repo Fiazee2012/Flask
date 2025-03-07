@@ -23,6 +23,8 @@ def mnist_preprocess(input_data, canvas_size=280, target_size=(28, 28)):
     line_thickness = 20  # Adjustable thickness
 
     # Draw each path
+    print("x" *20)
+    print(input_data)
     for path in input_data:
         # If path has only one point, draw a small circle
         if len(path) == 1:

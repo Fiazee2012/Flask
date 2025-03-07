@@ -31,6 +31,28 @@ def softmax(x):
 def homepage():
     return render_template("index.html")
 
+@app.route("/homepage2")
+def homepage2():
+    return render_template("index2.html")
+
+@app.route("/doodles_playground/", methods=["GET", "POST"])
+def doodles_playground():
+    mousePositions = request.get_json()
+    image28by28 = mnist_preprocess(input_data = mousePositions)
+    weights_1, weights_2 = load_doodles_weights()
+    np.set_printoptions(suppress=True, precision=2, floatmode='fixed')
+    output = predict(image28by28, weights_1, weights_2)
+    inner_list = output[0]
+    results = {"pizza":inner_list[0],  "tornado":inner_list[1]}
+    print(results)
+    return jsonify(results)
+
+def load_doodles_weights():
+    file = np.load("windows.npz")
+    weights_1 = file["weights_1"]
+    weights_2 = file["weights_2"]
+    return weights_1, weights_2
+
 @app.route("/mnist_playground/", methods=["GET", "POST"])
 def mnist_playground():
     positions = request.json
